@@ -30,6 +30,7 @@
     "express": "^4.16.2",
     "jquery": "^3.3.1",
     "mongoose": "^5.0.4",
+    "nodemon": "^1.14.12",
     "socket.io": "^2.0.4"
   }
 }
