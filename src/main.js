@@ -22,7 +22,7 @@ var signTemplate = `<div class="container formclass">
 										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
 									</div>
 									<div class="form-group">
-										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+										<input type="password" name="password" id="loginpassword" tabindex="2" class="form-control" placeholder="Password">
 									</div>
 									<div class="form-group text-center">
 										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
@@ -46,9 +46,6 @@ var signTemplate = `<div class="container formclass">
 									</div>
 								</form>
 								<form id="register-form" action="https://phpoll.com/register/process" method="post" role="form" style="display: none;">
-									<div class="form-group">
-										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
-									</div>
 									<div class="form-group">
 										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
 									</div>
@@ -86,7 +83,6 @@ var chatboxTemplate = `
   </form>
 </div>
 `
-
 
 
 var chatlistTemplate = `
@@ -132,16 +128,17 @@ $(function() {
 	});
 
 $('#register-form').on("submit", ( (e) => {
+	console.log("Hi")
  e.preventDefault();
  const data = {}
- data.userEmail = $('#email').val();
- data.userpassword = $('#password').val();
+ data.email = $('#email').val();
+ data.password = $('#password').val();
  
-	$.ajax({
+ console.log(data)
+$.ajax({
   type: "POST",
   url: 'http://localhost:3000/register',
-  data: JOSN.stringify(data),
-  success: success,
+  data: data
 })
 	.done(function(data){
 		console.log('success', data);
@@ -154,25 +151,27 @@ $('#login-form').on('submit', ( (e) => {
     e.preventDefault();
     // randomly select one user from the database at the beginning,
     // so that we have one user for ordering and checkout
+      var data = {
+      	email: $('#username').val(), 
+        password: $('#loginpassword').val()
+      }
+      var jsonData = JSON.stringify(data)
+      console.log("the json data"+ jsonData)
       $.ajax({
         url: "http://localhost:3000/login",
         method: "POST",
         contentType: "application/json",
-        dataType: "json",
-        data: JSON.stringify({
-           email: $('#username').val(), 
-           password: $('#password').val()
-        })
+        data: jsonData
       })
       .done(function(data) {
         console.log('success', data);
 
-        if(data.err) {
+        if(data.error) {
           $('.loginerror').show();
-          $('.errmsg').text(data.err);
+          $('.errmsg').text(data.error);
         }
         else {
-        	$()
+        	$('.formclass').hide();
           $('#chatList').toggle('slow');
         }
       })
