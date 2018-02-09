@@ -2,7 +2,7 @@
   "name": "hakeni-chat-app",
   "version": "1.0.0",
   "description": "users chat application can be add to any website that have users to contact each other",
-  "main": "server.js",
+  "main": "./src/server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon src/server/server.js"
@@ -32,6 +32,7 @@
     "jquery": "^3.3.1",
     "mongoose": "^5.0.4",
     "nodemon": "^1.14.12",
+    "path": "^0.12.7",
     "socket.io": "^2.0.4"
   }
 }
