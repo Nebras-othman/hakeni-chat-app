@@ -1,6 +1,7 @@
 // signup styling 
 body {
     padding-top: 90px;
+    margin-top: 30px !important:;
 }
 .panel-login {
 	border-color: #ccc;
@@ -98,3 +99,9 @@ body {
 	background-color: #1CA347;
 	border-color: #1CA347;
 }
+
+/* styling chatBox */
+
+
+
+
