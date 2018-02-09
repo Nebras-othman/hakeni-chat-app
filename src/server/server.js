@@ -49,7 +49,7 @@ app.get('/login', (req, res) => {
 
 });
 
-app.post('/signup', (req, res) => {
+app.post('/register', (req, res) => {
 console.log(req.body);
 if(!req.body.username || !req.body.password)
     return res.json({ err: 'username and password required'});
