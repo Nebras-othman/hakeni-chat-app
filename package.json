@@ -1,0 +1,27 @@
+{
+  "name": "hakeni-chat-app",
+  "version": "1.0.0",
+  "description": "users chat application can be add to any website that have users to contact each other",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nebras-othman/hakeni-chat-app.git"
+  },
+  "keywords": [
+    "NodeJs",
+    "express",
+    "socketIo",
+    "mongoDb",
+    "jquary",
+    "bootstrap"
+  ],
+  "author": "Nebras Othman , Laith Massoud , Tarek Al-khatib",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nebras-othman/hakeni-chat-app/issues"
+  },
+  "homepage": "https://github.com/Nebras-othman/hakeni-chat-app#readme"
+}
