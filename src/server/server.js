@@ -1,4 +1,3 @@
-console.log('Server is ready');
 const express = require('express');
 const Router = express.Router;
 const app = express();
