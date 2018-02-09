@@ -23,5 +23,13 @@
   "bugs": {
     "url": "https://github.com/Nebras-othman/hakeni-chat-app/issues"
   },
-  "homepage": "https://github.com/Nebras-othman/hakeni-chat-app#readme"
+  "homepage": "https://github.com/Nebras-othman/hakeni-chat-app#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "bootstrap": "^4.0.0",
+    "express": "^4.16.2",
+    "jquery": "^3.3.1",
+    "mongoose": "^5.0.4",
+    "socket.io": "^2.0.4"
+  }
 }
