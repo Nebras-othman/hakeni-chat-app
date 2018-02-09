@@ -1,10 +1,10 @@
 
-var sign = `<div class="container">
+var signTemplate = `<div class="container formclass">
     	<div class="row">
 			<div class="col-md-6 col-md-offset-3">
 				<div class="panel panel-login">
 					<div class="panel-heading">
-						<div class="row">
+						<div class="row">	
 							<div class="col-xs-6">
 								<a href="#" class="active" id="login-form-link">Login</a>
 							</div>
@@ -39,7 +39,7 @@ var sign = `<div class="container">
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="text-center">
-													<a href="https://phpoll.com/recover" tabindex="5" class="forgot-password">Forgot Password?</a>
+													<a href="" tabindex="5" class="forgot-password">Forgot Password?</a>
 												</div>
 											</div>
 										</div>
@@ -75,9 +75,46 @@ var sign = `<div class="container">
 	</div>`
 
 
+var chatboxTemplate = `
+ <div class="container">
+  <form>
+    <div class="form-group">
+      <label for="comment">chat here:</label>
+      <textarea class="form-control" rows="5" id="comment"></textarea>
+    </div>
+    <button type="button" class="btn btn-primary">Send</button>
+  </form>
+</div>
+`
+
+
+
+var chatlistTemplate = `
+<div id="chatList" class="container">
+	<div class= "row">
+  	<div class= col-md-4 lg-4 sm-4>
+			<div class="list-group">
+			  <a href="#" class="list-group-item disabled">First item</a>
+			  <a href="#" class="list-group-item">Second item</a>
+			  <a href="#" class="list-group-item">Third item</a>
+	  	</div>
+		</div>
+
+		<div class= col-md-4 lg-4 sm-4>
+
+		 ${chatboxTemplate}
+		<div>
+
+	</div>
+</div>
+ `
+
+
 
 $(function() {
-	$('body').append(sign);
+
+	$('body').append(signTemplate) .append(chatlistTemplate);
+	$('#chatList').hide();
 
     $('#login-form-link').click(function(e) {
 			$("#login-form").delay(100).fadeIn(100);
@@ -93,5 +130,58 @@ $(function() {
 		$(this).addClass('active');
 		e.preventDefault();
 	});
+
+$('#register-form').on("submit", ( (e) => {
+ e.preventDefault();
+ const data = {}
+ data.userEmail = $('#email').val();
+ data.userpassword = $('#password').val();
+ 
+	$.ajax({
+  type: "POST",
+  url: 'http://localhost:3000/register',
+  data: JOSN.stringify(data),
+  success: success,
+})
+	.done(function(data){
+		console.log('success', data);
+	})
+
+} ));
+ 
+
+$('#login-form').on('submit', ( (e) => {
+    e.preventDefault();
+    // randomly select one user from the database at the beginning,
+    // so that we have one user for ordering and checkout
+      $.ajax({
+        url: "http://localhost:3000/login",
+        method: "POST",
+        contentType: "application/json",
+        dataType: "json",
+        data: JSON.stringify({
+           email: $('#username').val(), 
+           password: $('#password').val()
+        })
+      })
+      .done(function(data) {
+        console.log('success', data);
+
+        if(data.err) {
+          $('.loginerror').show();
+          $('.errmsg').text(data.err);
+        }
+        else {
+        	$()
+          $('#chatList').toggle('slow');
+        }
+      })
+      .fail(function(xhr) {
+        console.log('error', xhr);
+      }); 
+
+      }));      
+
+
 
 });
